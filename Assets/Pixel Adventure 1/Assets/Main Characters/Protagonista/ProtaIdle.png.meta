@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 561212643827d0f4691c78150a9aac2b
+guid: 4eae7ccce05d60447845254fef750ec6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8389030391018289564
-    second: ProtaIdle-export_0
+      213: -4387270062282934839
+    second: ProtaIdle_0
   - first:
-      213: -1917319184274153818
-    second: ProtaIdle-export_1
+      213: -5859189218805858473
+    second: ProtaIdle_1
   - first:
-      213: 457400486740744034
-    second: ProtaIdle-export_2
+      213: -7010482117175939512
+    second: ProtaIdle_2
   - first:
-      213: -8943476747472355361
-    second: ProtaIdle-export_3
+      213: -7078933686912867333
+    second: ProtaIdle_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ProtaIdle-export_0
+      name: ProtaIdle_0
       rect:
         serializedVersion: 2
-        x: 49
+        x: 0
         y: 0
-        width: 232
-        height: 261
+        width: 139
+        height: 156
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 466066d6e4d249b80800000000000000
-      internalID: -8389030391018289564
+      spriteID: 9c57be38f194d13c0800000000000000
+      internalID: -4387270062282934839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProtaIdle-export_1
+      name: ProtaIdle_1
       rect:
         serializedVersion: 2
-        x: 369
+        x: 347
         y: 0
-        width: 232
-        height: 251
+        width: 140
+        height: 151
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ae1c4c3c505465e0800000000000000
-      internalID: -1917319184274153818
+      spriteID: 75f3745e27affaea0800000000000000
+      internalID: -5859189218805858473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProtaIdle-export_2
+      name: ProtaIdle_2
       rect:
         serializedVersion: 2
-        x: 689
+        x: 695
         y: 0
-        width: 232
-        height: 251
+        width: 140
+        height: 151
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 267d54cb153095600800000000000000
-      internalID: 457400486740744034
+      spriteID: 84eef7558a3c5be90800000000000000
+      internalID: -7010482117175939512
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProtaIdle-export_3
+      name: ProtaIdle_3
       rect:
         serializedVersion: 2
-        x: 1009
+        x: 1043
         y: 0
-        width: 232
-        height: 261
+        width: 139
+        height: 156
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdfb1f1684362e380800000000000000
-      internalID: -8943476747472355361
+      spriteID: bf3230b415392cd90800000000000000
+      internalID: -7078933686912867333
       vertices: []
       indices: 
       edges: []
