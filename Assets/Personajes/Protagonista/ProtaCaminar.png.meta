@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 43312eb4f3060c445acb7bbc5f5f7337
+guid: 648468d01bebc5b439ce358cd01a2afd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6120392965099744601
-    second: AliadoIdle_0
+      213: -7403364626256247637
+    second: ProtaCaminar_0
   - first:
-      213: -3689909007749461770
-    second: AliadoIdle_1
+      213: -5458236629417162936
+    second: ProtaCaminar_1
   - first:
-      213: 8352300262163220125
-    second: AliadoIdle_2
+      213: 5055941662066464363
+    second: ProtaCaminar_2
   - first:
-      213: 8975491831446378856
-    second: AliadoIdle_3
+      213: 5517923532936671206
+    second: ProtaCaminar_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AliadoIdle_0
+      name: ProtaCaminar_0
       rect:
         serializedVersion: 2
-        x: 39
+        x: 0
         y: 0
-        width: 202
-        height: 256
+        width: 185
+        height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 95de19a79f000f450800000000000000
-      internalID: 6120392965099744601
+      spriteID: ba4cd4dd817f14990800000000000000
+      internalID: -7403364626256247637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AliadoIdle_1
+      name: ProtaCaminar_1
       rect:
         serializedVersion: 2
-        x: 295
+        x: 471
         y: 0
-        width: 202
-        height: 249
+        width: 194
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f84493be4fcaccc0800000000000000
-      internalID: -3689909007749461770
+      spriteID: 847809b54b27044b0800000000000000
+      internalID: -5458236629417162936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AliadoIdle_2
+      name: ProtaCaminar_2
       rect:
         serializedVersion: 2
-        x: 551
+        x: 943
         y: 0
-        width: 202
-        height: 249
+        width: 186
+        height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d9604a706d459e370800000000000000
-      internalID: 8352300262163220125
+      spriteID: b66d19477205a2640800000000000000
+      internalID: 5055941662066464363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AliadoIdle_3
+      name: ProtaCaminar_3
       rect:
         serializedVersion: 2
-        x: 807
+        x: 1415
         y: 0
-        width: 202
-        height: 256
+        width: 186
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86918c9344a5f8c70800000000000000
-      internalID: 8975491831446378856
+      spriteID: 6ef657ec73a939c40800000000000000
+      internalID: 5517923532936671206
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AliadoIdle_0: 6120392965099744601
-      AliadoIdle_1: -3689909007749461770
-      AliadoIdle_2: 8352300262163220125
-      AliadoIdle_3: 8975491831446378856
+      ProtaCaminar_0: -7403364626256247637
+      ProtaCaminar_1: -5458236629417162936
+      ProtaCaminar_2: 5055941662066464363
+      ProtaCaminar_3: 5517923532936671206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
