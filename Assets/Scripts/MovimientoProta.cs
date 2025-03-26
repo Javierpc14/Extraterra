@@ -10,8 +10,13 @@ public class MovimientoProta : MonoBehaviour
     public int vida = 3;
     public Animator animator;
     private bool recibiendoDano;
-
     Rigidbody2D rigidbody;
+    // Variables proyectil
+    public float velocidadProyectil = 1000f;
+    public GameObject proyectil;
+    //Esta variable es para saber si el proyectil tiene que moverse a la derecha o a la izquierda
+    // 1 derecha / 2 izquierda
+    public int direccionProyectil = 1;
 
     void Start()
     {
@@ -20,28 +25,66 @@ public class MovimientoProta : MonoBehaviour
 
     void FixedUpdate()
     {
+        movimiento();
+
+        saltoProta();
+
+        animaciones();
+
+        direccionPersonaje();  
+    }
+
+    // Utilizo la funcion update para la bala debido a que FixedUpdate se ejecuta a un ritmo fijo,
+    // lo que hace que al pulsar la tecla de disparo no siempre haga salir una bala
+    void Update(){
+        // GetKeyUp para que no se espameen las balas
+        // utilizo el KeyCode.E porque funciona mejor
+        if(Input.GetKeyDown(KeyCode.E)){
+            //aqui se especifica la direccion y la rotacion
+            GameObject goProyectil = Instantiate(proyectil, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
+
+            if(direccionProyectil == 1){
+                goProyectil.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(velocidadProyectil * Time.deltaTime, 0f);
+            }else if(direccionProyectil == 2){
+                goProyectil.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(-velocidadProyectil * Time.deltaTime, 0f);
+            }
+
+            Destroy(goProyectil, 3f);
+        }
+    }
+
+    public void movimiento(){
         // if(!recibiendoDano){
             // movimiento
             if (Input.GetKey("d") && !recibiendoDano)
             {
                 rigidbody.linearVelocity = new Vector2(velocidad, rigidbody.linearVelocity.y);
+                // al pulsar la d (derecha) indico que la bala se mueva a la derecha
+                direccionProyectil = 1;
             }
             else if (Input.GetKey("a") && !recibiendoDano)
             {
                 rigidbody.linearVelocity = new Vector2(-velocidad, rigidbody.linearVelocity.y);
+                // al pulsar la a (izquierda) indico que la bala se mueva a la derecha
+                direccionProyectil = 2;
             }
             else
             {
                 rigidbody.linearVelocity = new Vector2(0, rigidbody.linearVelocity.y);
             }
         // }
+    }
 
+    public void saltoProta(){
         // salto
         if (Input.GetKey("space") && ComprobarSuelo.siToca && !recibiendoDano)
         {
             rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, salto);
         }
-        //Animacion salto
+    }
+
+    public void animaciones(){
+         //Animacion salto
         animator.SetBool("ensuelo", ComprobarSuelo.siToca);
 
         //Recibir Dano
@@ -49,7 +92,9 @@ public class MovimientoProta : MonoBehaviour
 
         // Cambio de animaciones
         animator.SetFloat("movimiento", rigidbody.linearVelocity.x * velocidad);
+    }
 
+    public void direccionPersonaje(){
         // Para hacer que el personaje mire a la izquierda o a la derecha cuando se mueva
         if (rigidbody.linearVelocity.x < 0)
         {
