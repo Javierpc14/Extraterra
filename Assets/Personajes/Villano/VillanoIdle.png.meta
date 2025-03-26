@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VillanoIdle_0: 6258256734889633886
+      VillanoIdle_1: 1151570005324404150
+      VillanoIdle_2: -8799992707737646521
+      VillanoIdle_3: -2755656542648447832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

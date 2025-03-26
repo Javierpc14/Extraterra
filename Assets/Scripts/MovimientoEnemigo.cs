@@ -5,7 +5,7 @@ public class MovimientoEnemigo : MonoBehaviour
     public Transform jugador;
     public float RadioDeDeteccion = 5.0f;
     public float velocidad = 2.0f;
-
+    public Animator animator;
     private Rigidbody2D rigidbody;
     private Vector2 movimiento;
 
@@ -29,7 +29,10 @@ public class MovimientoEnemigo : MonoBehaviour
             movimiento = Vector2.zero;
         }
 
+        animator.SetBool("RecibeDano", recibiendoDano);
+
         rigidbody.MovePosition(rigidbody.position + movimiento * velocidad * Time.deltaTime);
+
     }
 
     // Para cuando el prota colisiona con el enemigo
@@ -41,17 +44,16 @@ public class MovimientoEnemigo : MonoBehaviour
         }
     }
 
-    // Para cuando le dispare el prota
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag == "Proyectil"){
+    // Para cuando le dispare el prota por que el proyectil es un trigger
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.gameObject.CompareTag("Proyectil")){
             //esto elimina el proyectil del prota si impacta al enemigo
-            Destroy(other.gameObject);
-            // // esto elimina al enemigo
+            Destroy(collision.gameObject);
+            // esto elimina al enemigo
             // Destroy(gameObject);
 
-            if(other.gameObject.CompareTag("Proyectil")){
-                Vector2 direccionDano = new Vector2(other.gameObject.transform.position.x, 0);
-
+            if(collision.gameObject.CompareTag("Proyectil")){
+                Vector2 direccionDano = new Vector2(collision.gameObject.transform.position.x, 0);
                 RecibeDano(direccionDano, 1);
             }
         }
@@ -62,11 +64,17 @@ public class MovimientoEnemigo : MonoBehaviour
         if (!recibiendoDano)
         {
             recibiendoDano = true;
+            
             // para que rebote
             // Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
             // rigidbody.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
         }
 
+    }
+
+    public void DesactivaDano(){
+        recibiendoDano = false;
+        rigidbody.linearVelocity = Vector2.zero;
     }
 
 }
