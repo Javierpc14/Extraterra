@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 238bf7229f8277241b403e2b5aef73bf
+guid: b19dd84546a834348bc9e088853ad5ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6258256734889633886
-    second: VillanoIdle_0
+      213: -2097805790927428517
+    second: VillanoDano_0
   - first:
-      213: 1151570005324404150
-    second: VillanoIdle_1
+      213: -5866662235004935957
+    second: VillanoDano_1
   - first:
-      213: -8799992707737646521
-    second: VillanoIdle_2
-  - first:
-      213: -2755656542648447832
-    second: VillanoIdle_3
+      213: 1366587464870351658
+    second: VillanoDano_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VillanoIdle_0
+      name: VillanoDano_0
       rect:
         serializedVersion: 2
         x: 39
@@ -137,61 +134,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e58ea4cb75bc9d650800000000000000
-      internalID: 6258256734889633886
+      spriteID: b5463007fb813e2e0800000000000000
+      internalID: -2097805790927428517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VillanoIdle_1
+      name: VillanoDano_1
       rect:
         serializedVersion: 2
         x: 295
-        y: 0
-        width: 202
-        height: 249
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b51b5d81d23bff00800000000000000
-      internalID: 1151570005324404150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: VillanoIdle_2
-      rect:
-        serializedVersion: 2
-        x: 551
-        y: 0
-        width: 202
-        height: 249
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74a0545b14520e580800000000000000
-      internalID: -8799992707737646521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: VillanoIdle_3
-      rect:
-        serializedVersion: 2
-        x: 807
         y: 0
         width: 202
         height: 256
@@ -203,8 +156,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8ac457c79f0f1c9d0800000000000000
-      internalID: -2755656542648447832
+      spriteID: be0e459b7cd659ea0800000000000000
+      internalID: -5866662235004935957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillanoDano_2
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 0
+        width: 202
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23591e0f0817f210800000000000000
+      internalID: 1366587464870351658
       vertices: []
       indices: 
       edges: []
