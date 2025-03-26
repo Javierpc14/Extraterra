@@ -8,17 +8,30 @@ public class MovimientoEnemigo : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rigidbody;
     private Vector2 movimiento;
-
     private bool recibiendoDano;
+    private bool jugadorVivo;
+    // variables de la vida del enemigo
+    private bool muerto;
+    public int vida = 3;
+
 
     void Start()
     {
+        jugadorVivo = true;
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
 
     void Update()
     {
+        if(jugadorVivo && !muerto){
+            Movimiento();
+        }
+
+        animator.SetBool("RecibeDano", recibiendoDano);
+    }
+
+    private void Movimiento(){
         float distanciaHastaJugador = Vector2.Distance(transform.position, jugador.position);
 
         if(distanciaHastaJugador < RadioDeDeteccion){
@@ -29,18 +42,17 @@ public class MovimientoEnemigo : MonoBehaviour
             movimiento = Vector2.zero;
         }
 
-        animator.SetBool("RecibeDano", recibiendoDano);
-
         rigidbody.MovePosition(rigidbody.position + movimiento * velocidad * Time.deltaTime);
-
     }
 
     // Para cuando el prota colisiona con el enemigo
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("Player")){
             Vector2 direccionDano = new Vector2(transform.position.x, 0);
+            MovimientoProta movimientoProta = collision.gameObject.GetComponent<MovimientoProta>();
 
-            collision.gameObject.GetComponent<MovimientoProta>().RecibeDano(direccionDano, 1);
+            movimientoProta.RecibeDano(direccionDano, 1);
+            jugadorVivo = !movimientoProta.muerto;
         }
     }
 
@@ -63,11 +75,17 @@ public class MovimientoEnemigo : MonoBehaviour
     {
         if (!recibiendoDano)
         {
+            vida -= cantDano;
             recibiendoDano = true;
             
-            // para que rebote
-            // Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
-            // rigidbody.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
+            if(vida <= 0){
+                muerto = true;
+                Destroy(gameObject);
+            }else{
+                // para que rebote
+                // Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
+                // rigidbody.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
+            }   
         }
 
     }

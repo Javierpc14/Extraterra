@@ -7,7 +7,10 @@ public class MovimientoProta : MonoBehaviour
     public float velocidad = 2;
     public float salto = 3;
     public float fuerzaRebote = 10f;
+
     public int vida = 3;
+    public bool muerto;
+
     public Animator animator;
     private bool recibiendoDano;
     Rigidbody2D rigidbody;
@@ -56,6 +59,7 @@ public class MovimientoProta : MonoBehaviour
     public void movimiento(){
         // if(!recibiendoDano){
             // movimiento
+        if(!muerto){
             if (Input.GetKey("d") && !recibiendoDano)
             {
                 rigidbody.linearVelocity = new Vector2(velocidad, rigidbody.linearVelocity.y);
@@ -72,6 +76,7 @@ public class MovimientoProta : MonoBehaviour
             {
                 rigidbody.linearVelocity = new Vector2(0, rigidbody.linearVelocity.y);
             }
+        } 
         // }
     }
 
@@ -92,6 +97,9 @@ public class MovimientoProta : MonoBehaviour
 
         // Cambio de animaciones
         animator.SetFloat("movimiento", rigidbody.linearVelocity.x * velocidad);
+
+        // Muerte
+        animator.SetBool("muerto", muerto);
     }
 
     public void direccionPersonaje(){
@@ -113,8 +121,15 @@ public class MovimientoProta : MonoBehaviour
         if (!recibiendoDano)
         {
             recibiendoDano = true;
-            Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
-            rigidbody.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
+            vida -= cantDano;
+            if(vida <= 0){
+                muerto = true;
+            }
+
+            if(!muerto){
+                Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
+                rigidbody.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
+            }     
         }
 
     }

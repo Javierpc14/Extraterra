@@ -11543,7 +11543,8 @@ MonoBehaviour:
   velocidad: 1
   salto: 4
   fuerzaRebote: 2
-  vida: 3
+  vida: 5
+  muerto: 0
   animator: {fileID: 752566650}
   velocidadProyectil: 500
   proyectil: {fileID: 2771017411280665615, guid: 681b75b49e90e2e4180a17ce27c06d37, type: 3}
@@ -11822,6 +11823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6172bb76a3c35c549a964634fce87ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rellenoBarraVida: {fileID: 1642622495}
 --- !u!1 &1466828307
 GameObject:
   m_ObjectHideFlags: 0
@@ -12419,6 +12421,7 @@ MonoBehaviour:
   RadioDeDeteccion: 5
   velocidad: 0
   animator: {fileID: 1837788213}
+  vida: 3
 --- !u!1 &1843978584
 GameObject:
   m_ObjectHideFlags: 0
