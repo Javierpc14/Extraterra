@@ -8,21 +8,31 @@ public class MovimientoProta : MonoBehaviour
     public float salto = 3;
     public float fuerzaRebote = 10f;
 
-    public int vida = 3;
+    // Variables para la caida al vacio del personaje
+    public float xInicial;
+    public float yInicial;
+
+    public int vida = 5;
     public bool muerto;
 
     public Animator animator;
     private bool recibiendoDano;
     Rigidbody2D rigidbody;
+
     // Variables proyectil
     public float velocidadProyectil = 1000f;
     public GameObject proyectil;
+
     //Esta variable es para saber si el proyectil tiene que moverse a la derecha o a la izquierda
     // 1 derecha / 2 izquierda
     public int direccionProyectil = 1;
 
     void Start()
     {
+        // dar valores iniciales a xInicial e yInicial
+        xInicial = transform.position.x;
+        yInicial = transform.position.y;
+
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -116,14 +126,23 @@ public class MovimientoProta : MonoBehaviour
         }
     }
 
+    // metodo para cuando el prota se caiga al vacio
+    public void Recolocar(){
+        transform.position = new Vector3(xInicial, yInicial, 0);
+    }
+
     public void RecibeDano(Vector2 direccion, int cantDano)
     {
         if (!recibiendoDano)
         {
             recibiendoDano = true;
             vida -= cantDano;
+
             if(vida <= 0){
                 muerto = true;
+                // Muerte
+                animator.SetBool("muerto", muerto);
+                Invoke(nameof(RestaurarProta), 1.5f);
             }
 
             if(!muerto){
@@ -131,7 +150,15 @@ public class MovimientoProta : MonoBehaviour
                 rigidbody.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
             }     
         }
+    }
 
+    private void RestaurarProta(){
+        Recolocar(); 
+        muerto = false;
+        vida = 5;
+        animator.SetBool("muerto", false);
+        animator.Play("ProtaIdleAnimation");
+        recibiendoDano = false;
     }
 
     public void DesactivaDano(){

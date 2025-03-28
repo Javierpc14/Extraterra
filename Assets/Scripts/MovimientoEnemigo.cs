@@ -3,16 +3,25 @@ using UnityEngine;
 public class MovimientoEnemigo : MonoBehaviour
 {
     public Transform jugador;
-    public float RadioDeDeteccion = 5.0f;
-    public float velocidad = 2.0f;
+
     public Animator animator;
     private Rigidbody2D rigidbody;
-    private Vector2 movimiento;
     private bool recibiendoDano;
     private bool jugadorVivo;
+
     // variables de la vida del enemigo
     private bool muerto;
     public int vida = 3;
+
+    // Variables de disparo
+    public Transform controladorProyectil;
+    public float distanciaLinea;
+    public LayerMask capaJugador;
+    public bool jugadorEnRango;
+    public GameObject proyectilEnemigo;
+    public float tiempoEntreDisparos;
+    public float tiempoUltimoDisparo;
+    public float tiempoEsperaDisparo;
 
 
     void Start()
@@ -25,24 +34,18 @@ public class MovimientoEnemigo : MonoBehaviour
     void Update()
     {
         if(jugadorVivo && !muerto){
-            Movimiento();
+            // para dibujar la linea con la cual sabe si atacar o no
+            jugadorEnRango = Physics2D.Raycast(controladorProyectil.position, transform.right, distanciaLinea, capaJugador);
+            // si la variable de jugador en rango es true significa que el enemigo debe disparar
+            if(jugadorEnRango){
+                if(Time.time > tiempoEntreDisparos + tiempoUltimoDisparo){
+                    tiempoUltimoDisparo = Time.time;
+                    Invoke(nameof(Disparar), tiempoEsperaDisparo);
+                }
+            }
         }
 
         animator.SetBool("RecibeDano", recibiendoDano);
-    }
-
-    private void Movimiento(){
-        float distanciaHastaJugador = Vector2.Distance(transform.position, jugador.position);
-
-        if(distanciaHastaJugador < RadioDeDeteccion){
-            Vector2 direccion = (jugador.position - transform.position).normalized;
-
-            movimiento = new Vector2(direccion.x, transform.position.y);
-        }else{
-            movimiento = Vector2.zero;
-        }
-
-        rigidbody.MovePosition(rigidbody.position + movimiento * velocidad * Time.deltaTime);
     }
 
     // Para cuando el prota colisiona con el enemigo
@@ -93,6 +96,10 @@ public class MovimientoEnemigo : MonoBehaviour
     public void DesactivaDano(){
         recibiendoDano = false;
         rigidbody.linearVelocity = Vector2.zero;
+    }
+
+    private void Disparar(){
+        Instantiate(proyectilEnemigo, controladorProyectil.position, controladorProyectil.rotation);
     }
 
 }
