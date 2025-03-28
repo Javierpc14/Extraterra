@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovimientoProta : MonoBehaviour
 {
@@ -23,15 +24,24 @@ public class MovimientoProta : MonoBehaviour
     public float velocidadProyectil = 1000f;
     public GameObject proyectil;
 
+    public int totalPartesReloj;
+    public Text txtTotalRelojes;
+
     //Esta variable es para saber si el proyectil tiene que moverse a la derecha o a la izquierda
     // 1 derecha / 2 izquierda
     public int direccionProyectil = 1;
+
+    // variables dualidad
+    public Plane plane;
+
 
     void Start()
     {
         // dar valores iniciales a xInicial e yInicial
         xInicial = transform.position.x;
         yInicial = transform.position.y;
+
+        totalPartesReloj = 0;
 
         rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -164,6 +174,14 @@ public class MovimientoProta : MonoBehaviour
     public void DesactivaDano(){
         recibiendoDano = false;
         rigidbody.linearVelocity = Vector2.zero;
+    }
+
+    // para cuando el prota colisiona con la moneda
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("reloj")){
+            totalPartesReloj++;
+            txtTotalRelojes.text = totalPartesReloj + "";
+        }
     }
 
 }

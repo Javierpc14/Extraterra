@@ -9,7 +9,7 @@ public class pasarNivel : MonoBehaviour
             // cuando la puerta colisione con el jugador:
             // lo primero que se hara sera cargar la escena
             // el SceneManager.GetActiveScene().buildIndex identifica en que escena estamos nosotros y lo que hace es que le suma 1
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 }
