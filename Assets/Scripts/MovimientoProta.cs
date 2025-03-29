@@ -26,13 +26,13 @@ public class MovimientoProta : MonoBehaviour
 
     public int totalPartesReloj;
     public Text txtTotalRelojes;
+    
 
     //Esta variable es para saber si el proyectil tiene que moverse a la derecha o a la izquierda
     // 1 derecha / 2 izquierda
     public int direccionProyectil = 1;
 
-    // variables dualidad
-    public Plane plane;
+
 
 
     void Start()
@@ -180,8 +180,13 @@ public class MovimientoProta : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("reloj")){
             totalPartesReloj++;
-            txtTotalRelojes.text = totalPartesReloj + "";
+            ActualizarTexto();
+            
         }
+    }
+
+    public void ActualizarTexto(){
+        txtTotalRelojes.text = totalPartesReloj + "";
     }
 
 }
