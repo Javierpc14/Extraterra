@@ -85,11 +85,24 @@ public class CambiarFondo : MonoBehaviour
             GameObject enemigo = enemigosLista[i];
             GameObject aliado = aliadosLista[i];
 
+            // El spriteRenderer y el collider de los aliados empiezan desactivados por que 
+            // al empezar la partida si matas a un enemigo sin utilizar la q el aliado se quedaba ahi ya que estaba detras del enemigo respecto a capas
+            // y al usar la q el gameobject del aliado se desactivava al final por lo que funcionaba bien,
+            // pero no podia empezar la partida con el gameobject de los aliados desactivados por que si no no entraban en la lista
+            // por lo que no se cambiaba el sprite del enemigo al pulsar la Q
+            // por lo que los aliados empiezan la partida con el spriteRenderer y el collider desactivados y cuando se pulsa la q se activan o desactivan para no interferir
+
+            SpriteRenderer aliadoRenderer = aliado.GetComponent<SpriteRenderer>();
+            Collider2D aliadoCollider = aliado.GetComponent<Collider2D>();
+            
             if (transformado)
             {
                 if(enemigo != null && aliado != null){
                     enemigo.SetActive(false);
+                    aliadoRenderer.enabled = true;
+                    aliadoCollider.enabled = true;
                     aliado.SetActive(true);
+                   
                 }
                 
             }
@@ -97,6 +110,8 @@ public class CambiarFondo : MonoBehaviour
             {
                 if(enemigo != null && aliado != null){
                     enemigo.SetActive(true);
+                    aliadoRenderer.enabled = false;
+                    aliadoCollider.enabled = false;
                     aliado.SetActive(false);
                 }
                 
