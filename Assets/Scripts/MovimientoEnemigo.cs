@@ -23,10 +23,19 @@ public class MovimientoEnemigo : MonoBehaviour
     public float tiempoUltimoDisparo;
     public float tiempoEsperaDisparo;
 
+    //variables sonidos
+    [SerializeField] private GameObject objDisparoEnemigo;
+    [SerializeField] private GameObject objMuerteEnemigo;
+    private AudioSource sDisparoEnemigo;
+    private AudioSource sMuerteEnemigo;
 
     void Start()
     {
         jugadorVivo = true;
+
+        sDisparoEnemigo = objDisparoEnemigo.GetComponent<AudioSource>();
+        sMuerteEnemigo = objMuerteEnemigo.GetComponent<AudioSource>();
+
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -82,8 +91,13 @@ public class MovimientoEnemigo : MonoBehaviour
             recibiendoDano = true;
             
             if(vida <= 0){
+                // en vez de eliminar el gameObject desactivo el sprite y el collider 
+                // para que se reproduzca bien el sonido al matar al enemigo
+                sMuerteEnemigo.Play();
+                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
                 muerto = true;
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }else{
                 // para que rebote
                 // Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
@@ -99,6 +113,7 @@ public class MovimientoEnemigo : MonoBehaviour
     }
 
     private void Disparar(){
+        sDisparoEnemigo.Play();
         Instantiate(proyectilEnemigo, controladorProyectil.position, controladorProyectil.rotation);
     }
 

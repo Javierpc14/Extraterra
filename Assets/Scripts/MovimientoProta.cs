@@ -32,8 +32,16 @@ public class MovimientoProta : MonoBehaviour
     // 1 derecha / 2 izquierda
     public int direccionProyectil = 1;
 
-
-
+    //variables de sonido
+    // no se por que pero con esto [SerializeField] funciona y sin eso no
+    [SerializeField] private GameObject objSaltoProta;
+    [SerializeField] private GameObject objDanoProta;
+    [SerializeField] private GameObject objDisparoProta;
+    [SerializeField] private GameObject objMuerteProta;
+    private AudioSource sSaltoProta;
+    private AudioSource sDanoProta;
+    private AudioSource sDisparoProta;
+    private AudioSource sMuerteProta;
 
     void Start()
     {
@@ -42,6 +50,11 @@ public class MovimientoProta : MonoBehaviour
         yInicial = transform.position.y;
 
         totalPartesReloj = 0;
+
+        sSaltoProta = objSaltoProta.GetComponent<AudioSource>();
+        sDanoProta = objDanoProta.GetComponent<AudioSource>();
+        sDisparoProta = objDisparoProta.GetComponent<AudioSource>();
+        sMuerteProta = objMuerteProta.GetComponent<AudioSource>();
 
         rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -63,6 +76,7 @@ public class MovimientoProta : MonoBehaviour
         // GetKeyUp para que no se espameen las balas
         // utilizo el KeyCode.E porque funciona mejor
         if(Input.GetKeyDown(KeyCode.E)){
+            sDisparoProta.Play();
             //aqui se especifica la direccion y la rotacion
             GameObject goProyectil = Instantiate(proyectil, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
 
@@ -105,6 +119,7 @@ public class MovimientoProta : MonoBehaviour
         if (Input.GetKey("space") && ComprobarSuelo.siToca && !recibiendoDano)
         {
             rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, salto);
+            sSaltoProta.Play();
         }
     }
 
@@ -147,8 +162,10 @@ public class MovimientoProta : MonoBehaviour
         {
             recibiendoDano = true;
             vida -= cantDano;
+            sDanoProta.Play();
 
             if(vida <= 0){
+                sMuerteProta.Play();
                 muerto = true;
                 animator.SetBool("ensuelo", !ComprobarSuelo.siToca);
                 animator.SetBool("muerto", muerto);
