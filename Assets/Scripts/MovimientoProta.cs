@@ -150,7 +150,7 @@ public class MovimientoProta : MonoBehaviour
 
             if(vida <= 0){
                 muerto = true;
-                // Muerte
+                animator.SetBool("ensuelo", !ComprobarSuelo.siToca);
                 animator.SetBool("muerto", muerto);
                 Invoke(nameof(RestaurarProta), 1.5f);
             }
@@ -185,6 +185,7 @@ public class MovimientoProta : MonoBehaviour
         }
     }
 
+    // metodo que actualiza el texto para controlar mejor esta actualizacion
     public void ActualizarTexto(){
         txtTotalRelojes.text = totalPartesReloj + "";
     }
