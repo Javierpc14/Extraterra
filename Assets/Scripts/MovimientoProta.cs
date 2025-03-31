@@ -38,6 +38,8 @@ public class MovimientoProta : MonoBehaviour
     [SerializeField] private GameObject objDanoProta;
     [SerializeField] private GameObject objDisparoProta;
     [SerializeField] private GameObject objMuerteProta;
+    [SerializeField] private GameObject objMusicaFondo;
+    private AudioSource musicaFondo;
     private AudioSource sSaltoProta;
     private AudioSource sDanoProta;
     private AudioSource sDisparoProta;
@@ -55,6 +57,9 @@ public class MovimientoProta : MonoBehaviour
         sDanoProta = objDanoProta.GetComponent<AudioSource>();
         sDisparoProta = objDisparoProta.GetComponent<AudioSource>();
         sMuerteProta = objMuerteProta.GetComponent<AudioSource>();
+        musicaFondo = objMusicaFondo.GetComponent<AudioSource>();
+
+        musicaFondo.Play();
 
         rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -93,6 +98,7 @@ public class MovimientoProta : MonoBehaviour
     public void movimiento(){
         // if(!recibiendoDano){
             // movimiento
+        
         if(!muerto){
             if (Input.GetKey("d") && !recibiendoDano)
             {
