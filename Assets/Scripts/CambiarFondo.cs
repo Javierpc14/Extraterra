@@ -13,6 +13,9 @@ public class CambiarFondo : MonoBehaviour
     private float temporizador = 0f;
     private bool fondoCambiado = false;
 
+    public GameObject enemigo;
+    private MovimientoEnemigo movimientoEnemigo;
+
     //variables para el cambio de enemigo a aliado
     // creo una lista que contenga los enemigos y los aliados
     public List<GameObject> enemigosLista = new List<GameObject>();
@@ -28,6 +31,7 @@ public class CambiarFondo : MonoBehaviour
         aliadosLista.AddRange(GameObject.FindGameObjectsWithTag("aliado"));
 
         movimientoProta = prota.GetComponent<MovimientoProta>();
+        movimientoEnemigo = enemigo.GetComponent<MovimientoEnemigo>();
     }
 
     void Update(){
@@ -97,10 +101,15 @@ public class CambiarFondo : MonoBehaviour
             
             if (transformado)
             {
-                if(enemigo != null && aliado != null){
+                if(enemigo != null && aliado != null ){
                     enemigo.SetActive(false);
-                    aliadoRenderer.enabled = true;
-                    aliadoCollider.enabled = true;
+
+                    // si el enemigo no esta muerto aparece el aliado
+                    if(!movimientoEnemigo.muerto){
+                        aliadoRenderer.enabled = true;
+                        aliadoCollider.enabled = true;
+                    }
+                    
                     aliado.SetActive(true);
                    
                 }

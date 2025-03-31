@@ -18,3 +18,5 @@ public class BarraVida : MonoBehaviour
         rellenoBarraVida.fillAmount = movimientoProta.vida / vidaMaxima;
     }
 }
+
+

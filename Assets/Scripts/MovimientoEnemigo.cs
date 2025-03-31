@@ -10,7 +10,7 @@ public class MovimientoEnemigo : MonoBehaviour
     private bool jugadorVivo;
 
     // variables de la vida del enemigo
-    private bool muerto;
+    public bool muerto;
     public int vida = 3;
 
     // Variables de disparo
@@ -26,8 +26,10 @@ public class MovimientoEnemigo : MonoBehaviour
     //variables sonidos
     [SerializeField] private GameObject objDisparoEnemigo;
     [SerializeField] private GameObject objMuerteEnemigo;
+    [SerializeField] private GameObject objDanoEnemigo;
     private AudioSource sDisparoEnemigo;
     private AudioSource sMuerteEnemigo;
+    private AudioSource sDanoEnemigo;
 
     void Start()
     {
@@ -35,6 +37,7 @@ public class MovimientoEnemigo : MonoBehaviour
 
         sDisparoEnemigo = objDisparoEnemigo.GetComponent<AudioSource>();
         sMuerteEnemigo = objMuerteEnemigo.GetComponent<AudioSource>();
+        sDanoEnemigo = objDanoEnemigo.GetComponent<AudioSource>();
 
         rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -87,6 +90,7 @@ public class MovimientoEnemigo : MonoBehaviour
     {
         if (!recibiendoDano)
         {
+            sDanoEnemigo.Play();
             vida -= cantDano;
             recibiendoDano = true;
             
