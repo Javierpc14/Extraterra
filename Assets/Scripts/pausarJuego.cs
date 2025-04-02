@@ -10,13 +10,9 @@ public class pausarJuego : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)){
 
             if(juegoPausado){
-
                 Reanudar();
-
             }else{
-
                 Pausar();
-
             }
         }
     }

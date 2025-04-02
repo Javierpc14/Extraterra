@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Villano_0: 1965837032029788206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

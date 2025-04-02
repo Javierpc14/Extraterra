@@ -96,9 +96,7 @@ public class MovimientoProta : MonoBehaviour
     }
 
     public void movimiento(){
-        // if(!recibiendoDano){
-            // movimiento
-        
+        // movimiento
         if(!muerto){
             if (Input.GetKey("d") && !recibiendoDano)
             {
@@ -117,7 +115,6 @@ public class MovimientoProta : MonoBehaviour
                 rigidbody.linearVelocity = new Vector2(0, rigidbody.linearVelocity.y);
             }
         } 
-        // }
     }
 
     public void saltoProta(){
@@ -130,7 +127,7 @@ public class MovimientoProta : MonoBehaviour
     }
 
     public void animaciones(){
-         //Animacion salto
+        //Animacion salto
         animator.SetBool("ensuelo", ComprobarSuelo.siToca);
 
         //Recibir Dano

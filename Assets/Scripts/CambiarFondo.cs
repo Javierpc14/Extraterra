@@ -56,11 +56,13 @@ public class CambiarFondo : MonoBehaviour
 
                 temporizador -= Time.deltaTime;
 
+                
+
                 //mostrar correctamente el tiempo por pantalla
                 int tiempoMostrar = Mathf.Max(0, Mathf.CeilToInt(temporizador));
                 txtTemporizador.text = tiempoMostrar.ToString();
                 
-
+                
                 if(temporizador <= 0f){
                     GameObject plane = GameObject.Find("Fondo1");
                     if(plane != null){
@@ -73,11 +75,12 @@ public class CambiarFondo : MonoBehaviour
                     txtTemporizador.text = "";
                     fondoCambiado = false;
 
-                    // resto la cantidad de relojes que hay y las que se muestran por pantalla
+                    
+                }
+                // resto la cantidad de relojes que hay y las que se muestran por pantalla
                     // no se por que si lo pongo al principio no funciona
                     movimientoProta.totalPartesReloj -= 5;
                     movimientoProta.ActualizarTexto();
-                }
             }
         }
     }
