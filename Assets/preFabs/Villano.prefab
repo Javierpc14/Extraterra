@@ -645,6 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jugador: {fileID: 0}
   animator: {fileID: 347690482179462169}
+  objFondo: {fileID: 0}
   muerto: 0
   vida: 3
   controladorProyectil: {fileID: 1406411475504126345}

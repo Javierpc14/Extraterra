@@ -27,8 +27,22 @@ public class CambiarFondo : MonoBehaviour
 
     void Start(){
         // añado a las listas los gameobject con los tag enemigo y aliado
-        enemigosLista.AddRange(GameObject.FindGameObjectsWithTag("Enemigo"));
-        aliadosLista.AddRange(GameObject.FindGameObjectsWithTag("aliado"));
+
+        // primero obtengo todos los enemigos y aliados
+        GameObject[] enemigos = GameObject.FindGameObjectsWithTag("Enemigo");
+        GameObject[] aliados = GameObject.FindGameObjectsWithTag("aliado");
+
+        // aqui ordeno a los enemigos y los aliados por sus coordenadas del eje x, ya que las coordenadas del enemigo y del aliado coinciden por parejas
+        // esto para emparejarlos, para solucionar los problemas que habia a la hora de eliminar al enemigo
+        System.Array.Sort(enemigos, (a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+        System.Array.Sort(aliados, (a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+
+        // aqui primero limpio las listas antes de agregar nuevos elementos
+        enemigosLista.Clear();
+        aliadosLista.Clear();
+        // añado todos los elementos del array ordenados a las listas
+        enemigosLista.AddRange(enemigos);
+        aliadosLista.AddRange(aliados);
 
         movimientoProta = prota.GetComponent<MovimientoProta>();
         movimientoEnemigo = enemigo.GetComponent<MovimientoEnemigo>();
