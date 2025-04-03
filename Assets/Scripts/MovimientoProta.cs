@@ -6,8 +6,13 @@ using UnityEngine.UI;
 public class MovimientoProta : MonoBehaviour
 {
     public float velocidad = 2;
-    public float salto = 3;
     public float fuerzaRebote = 10f;
+
+    //Variables de salto
+    public float fuerzaSalto = 10f;
+    public float longitudRaycast = 0.1f;
+    public LayerMask capaSuelo;
+    private bool enSuelo;
 
     // Variables para la caida al vacio del personaje
     public float xInicial;
@@ -69,6 +74,7 @@ public class MovimientoProta : MonoBehaviour
         movimiento();
 
         saltoProta();
+        
 
         animaciones();
 
@@ -118,17 +124,28 @@ public class MovimientoProta : MonoBehaviour
     }
 
     public void saltoProta(){
-        // salto
-        if (Input.GetKey("space") && ComprobarSuelo.siToca && !recibiendoDano)
+        // creo un RaycastHit2D el cual es igual a una linea que empieza desde la posicion del jugador, 
+        // mira hacia abajo, tiene la longitud de longitudRaycast y que busca colisionar con la capa de suelo
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, longitudRaycast, capaSuelo);
+        enSuelo = hit.collider != null;
+
+        if (enSuelo && Input.GetKey(KeyCode.Space) && !recibiendoDano)
         {
-            rigidbody.linearVelocity = new Vector2(rigidbody.linearVelocity.x, salto);
+            // le añado una fuerza al rigidbody y qeue la fuerza va a ser a modo de impulso con ForceMode2D
+            rigidbody.AddForce(new Vector2(0f, fuerzaSalto), ForceMode2D.Impulse);
             sSaltoProta.Play();
         }
+        //Animacion salto
+        animator.SetBool("ensuelo", enSuelo);
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * longitudRaycast);
     }
 
     public void animaciones(){
-        //Animacion salto
-        animator.SetBool("ensuelo", ComprobarSuelo.siToca);
+        
 
         //Recibir Dano
         animator.SetBool("recibeDano", recibiendoDano);
@@ -170,7 +187,7 @@ public class MovimientoProta : MonoBehaviour
             if(vida <= 0){
                 sMuerteProta.Play();
                 muerto = true;
-                animator.SetBool("ensuelo", !ComprobarSuelo.siToca);
+                animator.SetBool("ensuelo", enSuelo);
                 animator.SetBool("muerto", muerto);
                 Invoke(nameof(RestaurarProta), 1.5f);
             }
@@ -196,7 +213,7 @@ public class MovimientoProta : MonoBehaviour
         rigidbody.linearVelocity = Vector2.zero;
     }
 
-    // para cuando el prota colisiona con la moneda
+    // para cuando el prota colisiona con el reloj
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("reloj")){
             totalPartesReloj++;
